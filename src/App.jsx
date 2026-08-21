@@ -307,6 +307,7 @@ export default function App() {
   const [active, setActive] = useState(0)
   const [room, setRoom] = useState('living')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [policyOpen, setPolicyOpen] = useState(false)
   const [page, setPage] = useState(null)
   const overlayRef = useRef(null)
   const [portalOpen, setPortalOpen] = useState(false)
@@ -757,20 +758,6 @@ export default function App() {
           ease: 'none',
         }
       )
-
-      // ---- SIGNATURE / credits
-      gsap.fromTo(
-        ['.sig-left > *', '.sig-card'],
-        { opacity: 0, y: 46 },
-        {
-          scrollTrigger: { trigger: '.signature', start: 'top 85%' },
-          opacity: 1,
-          y: 0,
-          duration: 1.1,
-          stagger: 0.09,
-          ease: 'power3.out',
-        }
-      )
     }, rootRef)
 
     // ---- magnetic elements (outside context: plain listeners)
@@ -818,6 +805,85 @@ export default function App() {
       <div className="vignette" />
       <div className="film-grain" />
       <Cursor />
+
+      {/* ------------------------------------------------ policy bar */}
+      <div className={`policybar ${policyOpen ? 'is-open' : ''}`}>
+        <div className="pb-inner">
+          <button
+            className="pb-toggle magnetic"
+            aria-expanded={policyOpen}
+            onClick={() => setPolicyOpen((v) => !v)}
+          >
+            <i className="pb-dot" />
+            <span className="pb-label">Built by Hamza</span>
+            <i className="pb-caret" />
+          </button>
+
+          <div className="pb-ticker" onClick={() => setPolicyOpen((v) => !v)}>
+            <div className="pb-track">
+              {[0, 1].map((k) => (
+                <span className="pb-run" key={k}>
+                  <b>Designed, built &amp; animated by Hamza Iqbal</b>
+                  <i>·</i>
+                  No template, no stock, no borrowed craft
+                  <i>·</i>
+                  Every image AI generated — copyright free
+                  <i>·</i>
+                  <b>Open for work &amp; commissions</b>
+                  <i>·</i>
+                  Want a site people stop scrolling for?
+                  <i>·</i>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <a
+            className="pb-cta magnetic"
+            href="https://hamzakanth.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="pb-cta-glow" />
+            <span className="pb-cta-text">Hire Me</span>
+            <span className="pb-cta-arrow">↗</span>
+          </a>
+        </div>
+
+        <div className="pb-panel" aria-hidden={!policyOpen}>
+          <div className="pb-panel-inner">
+            <div className="pb-col">
+              <span className="pb-k">01 — The Craft</span>
+              <p className="pb-v">
+                Every frame here is mine — layout, light, motion and type. Built from nothing,
+                held under my <em>personal use</em>.
+              </p>
+            </div>
+            <div className="pb-col">
+              <span className="pb-k">02 — The Imagery</span>
+              <p className="pb-v">
+                All visuals are <em>AI generated</em> and copyright free. Nothing licensed, nothing
+                borrowed, nothing to clear.
+              </p>
+            </div>
+            <div className="pb-col">
+              <span className="pb-k">03 — The Offer</span>
+              <p className="pb-v">
+                Landing pages, product sites, 3D &amp; scroll storytelling by{' '}
+                <em>Hamza Iqbal</em>. Let&rsquo;s make yours the one they remember.
+              </p>
+              <a
+                className="pb-panel-cta"
+                href="https://hamzakanth.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See the work <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* ------------------------------------------------ navbar */}
       <nav className="nav">
@@ -1521,58 +1587,18 @@ export default function App() {
           </div>
         </section>
 
-        {/* ------------------------------------------------ signature / credits */}
+        {/* ------------------------------------------------ short footer */}
         <footer className="signature">
-          <div className="sig-glow" />
-          <div className="sig-inner">
-            <div className="sig-left">
-              <span className="kicker">Designed, Built &amp; Animated By</span>
-              <h3 className="sig-name">
-                Hamza <em>Iqbal</em>
-              </h3>
-              <p className="sig-copy">
-                Every frame of this site is mine — the layout, the light, the motion, the type. No
-                template, no stock, no borrowed craft. Every image you scrolled past was
-                <em> AI generated</em>, so the whole thing is copyright free and entirely under my
-                personal use.
-              </p>
-              <p className="sig-copy sig-copy-strong">
-                If you want a site that makes people stop scrolling — this is what that looks like.
-              </p>
-            </div>
-
-            <div className="sig-right">
-              <div className="sig-card">
-                <span className="sig-status">
-                  <i className="sig-dot" />
-                  Open for work &amp; commissions
-                </span>
-                <p className="sig-pitch">
-                  Landing pages, product sites, 3D &amp; scroll storytelling. Let&rsquo;s make yours
-                  the one they remember.
-                </p>
-                <a
-                  className="sig-cta magnetic"
-                  href="https://hamzakanth.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="sig-cta-glow" />
-                  <span className="sig-cta-text">Hire me — see the work</span>
-                  <span className="sig-cta-arrow">↗</span>
-                </a>
-                <span className="sig-link">hamzakanth.vercel.app</span>
-              </div>
-            </div>
-          </div>
-
           <div className="sig-fine">
-            <span>Elevia Residences · MMXXVI</span>
-            <span>© Hamza Iqbal</span>
-            <span>All design aspects under my personal use</span>
-            <span>Imagery AI generated · copyright free</span>
-            <a href="https://hamzakanth.vercel.app/" target="_blank" rel="noopener noreferrer">
-              For queries → hamzakanth.vercel.app
+            <span className="sig-brand">Elevia Residences · MMXXVI</span>
+            <span>© Hamza Iqbal · Personal use · AI-generated imagery, copyright free</span>
+            <a
+              className="sig-hire"
+              href="https://hamzakanth.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Hire me <span>↗</span>
             </a>
           </div>
         </footer>
