@@ -6,6 +6,25 @@ import { createScene } from './scene.js'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
+/* Inline arrow — U+2197 renders as a colour emoji on iOS/Android, so it is drawn instead */
+const ArrowUR = ({ className = '' }) => (
+  <svg
+    className={`icon-ar ${className}`}
+    viewBox="0 0 12 12"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M3.3 8.7 8.7 3.3M4.5 3.3h4.2v4.2"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.15"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
 const CHAPTERS = ['arrival', 'architecture', 'interior', 'craft', 'lifestyle', 'stats', 'plan', 'collection', 'views', 'aesthetics', 'voices', 'compare', 'finale']
 
 const RESIDENCES = [
@@ -846,7 +865,7 @@ export default function App() {
           >
             <span className="pb-cta-glow" />
             <span className="pb-cta-text">Hire Me</span>
-            <span className="pb-cta-arrow">↗</span>
+            <ArrowUR className="pb-cta-arrow" />
           </a>
         </div>
 
@@ -878,7 +897,7 @@ export default function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                See the work <span>↗</span>
+                See the work <ArrowUR />
               </a>
             </div>
           </div>
@@ -1598,7 +1617,7 @@ export default function App() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Hire me <span>↗</span>
+              Hire me <ArrowUR />
             </a>
           </div>
         </footer>

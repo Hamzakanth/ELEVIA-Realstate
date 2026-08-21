@@ -1850,6 +1850,15 @@ body.light .pb-run { color: rgba(24, 22, 18, 0.62); }
   transition: transform 0.55s cubic-bezier(0.6, 0, 0.2, 1);
 }
 .pb-cta:hover .pb-cta-glow { transform: translateX(0); }
+.icon-ar {
+  flex: none;
+  width: 0.72em;
+  height: 0.72em;
+  min-width: 9px;
+  min-height: 9px;
+  display: block;
+  overflow: visible;
+}
 .pb-cta-arrow { transition: transform 0.4s cubic-bezier(0.6, 0, 0.2, 1); }
 .pb-cta:hover .pb-cta-arrow { transform: translate(2px, -2px); }
 
@@ -1906,6 +1915,8 @@ body.light .pb-v em { color: #8a6a24; }
   transition: color 0.35s, border-color 0.35s;
 }
 .pb-panel-cta:hover { color: var(--gold); border-color: var(--gold); }
+.pb-panel-cta .icon-ar { transition: transform 0.4s cubic-bezier(0.6, 0, 0.2, 1); }
+.pb-panel-cta:hover .icon-ar { transform: translate(2px, -2px); }
 
 /* ---- push the main nav below the bar */
 .nav { top: var(--pb-h); }
@@ -1944,15 +1955,21 @@ body.light .sig-brand { color: rgba(24, 22, 18, 0.6); }
   transition: color 0.35s, border-color 0.35s;
 }
 .sig-hire:hover { color: var(--gold); border-color: var(--gold); }
-.sig-hire span { transition: transform 0.4s cubic-bezier(0.6, 0, 0.2, 1); }
-.sig-hire:hover span { transform: translate(2px, -2px); }
+.sig-hire .icon-ar { transition: transform 0.4s cubic-bezier(0.6, 0, 0.2, 1); }
+.sig-hire:hover .icon-ar { transform: translate(2px, -2px); }
 
 @media (max-width: 900px) {
   :root { --pb-h: 36px; }
   .pb-inner { padding: 0 0.9rem; gap: 0.8rem; }
   .pb-toggle .pb-label { display: none; }
   .pb-toggle { padding: 0.38rem 0.6rem; }
-  .pb-cta-text { display: none; }
+  .pb-cta {
+    padding: 0.36rem 0.72rem;
+    gap: 0.38rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.16em;
+    min-height: 26px;
+  }
   .pb-panel-inner { grid-template-columns: 1fr; gap: 1.4rem; }
   .signature { padding: 2.6rem 1.4rem; }
   .sig-fine { justify-content: flex-start; }
